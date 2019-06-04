@@ -37,7 +37,7 @@ echo ">>> Done."
 tracks="$(cat $page_file  | sed -n '/tracks:/p' | sed 's/tracks://g')"
 tracks_count=$(echo $tracks | jq '.[].file' | wc -l)
 subtitles=""
-for (( i = 0; i < $tracks_count; i++ ))
+for i in $(seq 0 1 $tracks_count)
 do
     kind=$(echo $tracks | jq .[$i].kind | sed 's/"//g')
     if [ "$kind" = "captions" ]; then
