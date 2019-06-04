@@ -12,7 +12,12 @@ exit_route () {
 
 VERBOSITY="--quiet"
 VERBOSITY=""
-SCRIPT_PATH=.
+if [ -z ${streamplayer+x} ]
+then
+	SCRIPT_PATH=.
+else
+	SCRIPT_PATH=$streamplayer
+fi
 WGET_PARAMETERS=$(head -n 1 $SCRIPT_PATH/cookies-wget.txt)
 
 tempfile_cmd="mktemp -t playvideo.XXXXX"
